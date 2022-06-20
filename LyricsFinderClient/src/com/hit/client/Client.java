@@ -1,4 +1,4 @@
-package com.hit.model;
+package com.hit.client;
 import java.io.BufferedReader;
 
 import java.io.IOException;
@@ -44,7 +44,7 @@ public class Client implements Runnable
 				{
 
 					@Override
-					public JsonElement serialize(com.hit.model.Request arg0, Type arg1, JsonSerializationContext arg2) {
+					public JsonElement serialize(com.hit.client.Request arg0, Type arg1, JsonSerializationContext arg2) {
 						JsonObject request = new JsonObject();
 						
 						JsonObject headers = new JsonObject();

@@ -1,4 +1,4 @@
-package com.hit.model;
+package com.hit.client;
 import java.util.List;
 
 public class Response {
