@@ -1,4 +1,4 @@
-package com.hit.client;
+package com.hit.model;
 
 import java.util.List;
 

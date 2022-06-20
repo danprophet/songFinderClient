@@ -1,4 +1,4 @@
-package com.hit.client;
+package com.hit.model;
 
 public class Request {
 	

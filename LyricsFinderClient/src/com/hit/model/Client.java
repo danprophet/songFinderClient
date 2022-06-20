@@ -1,5 +1,6 @@
-package com.hit.client;
+package com.hit.model;
 import java.io.BufferedReader;
+
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -21,21 +22,24 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
+
 public class Client implements Runnable
 {
-	String parsedRequest;
-	String receievedResponse;
+	Request currentRequest;
+	Response parsedResponse;
 	String ipAddress = "127.0.0.1";
 	int Port = 34567;
-	Response parsedResponse;
 
 	
 	public Client()
 	{
 	}
 	
+	public void setRequest(Request fromClient)
+	{
+		this.currentRequest = fromClient;
+	}
 	
-
 	public String requestToString(Request request)
 	{
 		String requestAsStr = "";
@@ -44,7 +48,7 @@ public class Client implements Runnable
 				{
 
 					@Override
-					public JsonElement serialize(com.hit.client.Request arg0, Type arg1, JsonSerializationContext arg2) {
+					public JsonElement serialize(Request arg0, Type arg1, JsonSerializationContext arg2) {
 						JsonObject request = new JsonObject();
 						
 						JsonObject headers = new JsonObject();
@@ -74,6 +78,7 @@ public class Client implements Runnable
 						
 						return request;
 					}
+
 				};
 		
 		GsonBuilder gsonBuilder = new GsonBuilder();
@@ -156,9 +161,10 @@ public class Client implements Runnable
 			System.out.println("[Client] Server Socket "+ mySocket);
 			
 			// Sending to server:
-			System.out.println("[Client] Sending Server Request: \n" + this.parsedRequest);
+			String parsedRequest = requestToString(this.currentRequest);
+			System.out.println("[Client] Sending Server Request: \n" + parsedRequest);
 			PrintWriter output = new PrintWriter(new OutputStreamWriter(mySocket.getOutputStream()));
-			output.println(this.parsedRequest);
+			output.println(parsedRequest);
 			output.flush();
 			
 			// Receiveing From Server:
@@ -168,7 +174,22 @@ public class Client implements Runnable
 			this.parsedResponse = handleResponseFromServer(serverResponse);
 			
 			// To Model here:
-			
+			String action = this.parsedResponse.getAction();
+			switch (action)
+			{
+				case "add":
+				case "remove":
+					MyModel.responseAddRemoveStatus(this.parsedResponse);
+					break;
+				case "search_title":
+				case "search_artist":
+				case "search_lyrics":
+					MyModel.updateSearchedSongList(this.parsedResponse);
+					break;
+				default:
+					System.out.println("[Client] Action not valid");
+					break;
+			}
 			
 			//
 			System.out.println("[Client] Close Client");
