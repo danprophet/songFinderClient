@@ -28,6 +28,9 @@ public class MyModel implements IModel{
 		setLastActionResult(fromServer.getStatus());
 	}
 
+	
+	
+	
 	public static List<Song> getMySongList() {
 		return mySongList;
 	}
