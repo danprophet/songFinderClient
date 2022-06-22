@@ -1,10 +1,9 @@
 package com.hit.model;
 import java.util.List;
+import com.hit.controller.MyController;
 
 public class MyModel implements IModel{
 
-	private static List<Song> mySongList;
-	private static int amountOfSongs;
 	private static boolean lastActionResult;
 	
 	public MyModel()
@@ -12,40 +11,48 @@ public class MyModel implements IModel{
 		
 	}
 	
-	public void notifyController()
+	
+	public void sendRequest(Request outgoingRequest)
 	{
-		
+		Client myClient = new Client();
+		myClient.setRequest(outgoingRequest);
+		Thread t1 = new Thread(myClient);
+		t1.start();
 	}
 	
 	public static void updateSearchedSongList(Response fromServer)
 	{
-		setMySongList(fromServer.getSongList());
-		setAmountOfSongs(fromServer.getSongList().size());
+		// notify controller:
+		MyController.updateSongList(fromServer.getSongList());
 	}
 	
 	public static void responseAddRemoveStatus(Response fromServer)
 	{
 		setLastActionResult(fromServer.getStatus());
+		// notify controller:
+		
 	}
 
+	public void search(String pattern, String action)
+	{
+		Request newRequest = null;
+		
+		switch (action)
+		{
+		case "search_title":
+			newRequest = new Request("search_title", pattern);
+			break;
+		case "search_artist":
+			newRequest = new Request("search_artist", pattern);
+			break;
+		case "search_lyrics":
+			newRequest = new Request("search_lyrics", pattern);
+			break;
+		}
+		
+		this.sendRequest(newRequest);
+	}
 	
-	
-	
-	public static List<Song> getMySongList() {
-		return mySongList;
-	}
-
-	public static void setMySongList(List<Song> mySongList) {
-		MyModel.mySongList = mySongList;
-	}
-
-	public static int getAmountOfSongs() {
-		return amountOfSongs;
-	}
-
-	public static void setAmountOfSongs(int amountOfSongs) {
-		MyModel.amountOfSongs = amountOfSongs;
-	}
 
 	public boolean isLastActionResult() {
 		return lastActionResult;

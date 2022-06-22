@@ -27,7 +27,7 @@ public class SearchPanel extends JFrame implements ActionListener {
   private JLabel jcomp16;
   private JTextArea jcomp17;
   
-  private List<Song> songList;
+  static List<Song> songList;
   private MyController controller;
   
   static String searchBtn = "searchBtn";
@@ -133,20 +133,22 @@ public void actionPerformed(ActionEvent e) {
 			switch (selectedBtn)
 			{
 			case "titleBtn":
-				System.out.println("Search Title" + pattern);
+				System.out.println("Search Title " + pattern);
+				this.controller.searchTitle(pattern);
 				break;
 			case "artistBtn":
 				System.out.println("Search artist " + pattern);
+				this.controller.searchArtist(pattern);
 				break;
 			case "lyricsBtn":
 				System.out.println("Search Lyrics " + pattern);
+				this.controller.searchLyrics(pattern);
 				break;
 			default:
-				
+				System.out.println("no radio button selected");
 				break;
 			}
 		}
-
 		break;
 	}
 	
@@ -157,7 +159,16 @@ public void actionPerformed(ActionEvent e) {
 	}
 }
 
- 
+public static void fromControllerSongList(List<Song> songListFromController)
+{
+	songList = songListFromController;
+}
+
+private void updateSongList()
+{
+	
+}
+
 
 //  public static void main (String[] args) {
 //      JFrame frame = new JFrame ("MyPanel");

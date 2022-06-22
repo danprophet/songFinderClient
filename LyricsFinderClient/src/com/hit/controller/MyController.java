@@ -1,5 +1,5 @@
 package com.hit.controller;
-
+import com.hit.view.SearchPanel;
 import java.util.List;
 
 import com.hit.model.MyModel;
@@ -15,6 +15,14 @@ public class MyController implements IController{
 		thisModel = new MyModel();
 	}
 	
+	public static void updateSongList(List<Song> songListFromModel) {
+		SearchPanel.fromControllerSongList(songListFromModel);
+	}
+	
+	public static void updateRequestStatus(boolean status) {
+//		SearchPanel.fromControllerSongList(songListFromModel);
+	}
+	
 	@Override
 	public void responseToView(Response responseFromServer) {
 		// TODO Auto-generated method stub
@@ -27,9 +35,19 @@ public class MyController implements IController{
 		
 	}
 	
-	public List<Song> search(String searchPattern)
+	public void searchTitle(String searchPattern)
 	{
-		return 
+		thisModel.search(searchPattern, "search_title");
+	}
+	
+	public void searchArtist(String searchPattern)
+	{
+		thisModel.search(searchPattern, "search_artist");
+	}
+	
+	public void searchLyrics(String searchPattern)
+	{
+		thisModel.search(searchPattern, "search_lyrics");
 	}
 
 }

@@ -105,7 +105,7 @@ public class Client implements Runnable
 						JsonObject headers = jsonObject.get("headers").getAsJsonObject(); // the command
 						JsonObject body = jsonObject.get("body").getAsJsonObject(); // the contenet of the response
 						
-						String command = headers.get("command").getAsString();
+						String command = headers.get("action").getAsString();
 						
 						switch(command)
 						{
@@ -125,7 +125,7 @@ public class Client implements Runnable
 								{
 									JsonObject currentSong = songArray.get(i).getAsJsonObject();
 									String title = currentSong.get("title").getAsString();
-									int id = currentSong.get("id").getAsInt();
+									int id = currentSong.get("songID").getAsInt();
 									String artist = currentSong.get("artist").getAsString();
 									String lyrics = currentSong.get("lyrics").getAsString();
 									

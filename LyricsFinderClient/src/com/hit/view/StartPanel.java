@@ -50,7 +50,7 @@ public class StartPanel extends JPanel implements ActionListener{
         manageSongDB.addActionListener(this);
 	}
 	
-	private static void createAndShowGUI()
+	public static void createAndShowGUI()
 	{
         //Create and set up the window.
         JFrame frame = new JFrame("StartPanel");
@@ -90,12 +90,12 @@ public class StartPanel extends JPanel implements ActionListener{
 		}		
 	}
 
-    public static void main(String[] args) {
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowGUI();
-            }
-        });
-    }
+//    public static void main(String[] args) {
+//        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+//            public void run() {
+//                createAndShowGUI();
+//            }
+//        });
+//    }
 	
 }
