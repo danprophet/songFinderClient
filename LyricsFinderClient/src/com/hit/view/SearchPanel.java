@@ -6,6 +6,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 public class SearchPanel extends JFrame implements ActionListener {
   private JLabel searchLabel;
@@ -16,7 +18,8 @@ public class SearchPanel extends JFrame implements ActionListener {
   private JLabel searchPtrnLabel;
   private JTextField searchPtrnTextField;
   private JButton searchPtrnJBtn;
-  private JList resultSongList;
+  private JScrollPane resultSongListScroll;
+  private JTable  resultSongList;  
   private JButton openSongBtn;
   private JLabel jcomp10;
   private JTextField jcomp11;
@@ -26,7 +29,7 @@ public class SearchPanel extends JFrame implements ActionListener {
   private JTextField jcomp15;
   private JLabel jcomp16;
   private JTextArea jcomp17;
-  
+  String[] resultColumnNames = {"Song Name", "Song ID"};
   static List<Song> songList;
   private MyController controller;
   
@@ -36,7 +39,7 @@ public class SearchPanel extends JFrame implements ActionListener {
   public SearchPanel() {
 	  this.controller = new MyController();
       //construct preComponents
-      String[] resultSongListItems = {};
+      Object[][] resultSongListItems = {{"No Song In List", -1}};
 //      this.setPreferredSize(new Dimension(500,500));
       this.setBounds(100, 100, 1020, 470);
       this.setResizable(false);
@@ -60,7 +63,11 @@ public class SearchPanel extends JFrame implements ActionListener {
       searchPtrnTextField = new JTextField (5);
       searchPtrnJBtn = new JButton ("Search");
       searchPtrnJBtn.setActionCommand(this.searchBtn);
-      resultSongList = new JList (resultSongListItems);
+      //JTable 
+      resultSongList = new JTable(new DefaultTableModel(resultSongListItems, resultColumnNames));
+      resultSongListScroll = new JScrollPane(resultSongList);
+      resultSongList.setDefaultEditor(Object.class, null); //JTable set not editable
+      
       openSongBtn = new JButton ("Open");
       openSongBtn.setActionCommand(this.openBtn);
       jcomp10 = new JLabel ("Song Title:");
@@ -84,7 +91,7 @@ public class SearchPanel extends JFrame implements ActionListener {
       add (searchPtrnLabel);
       add (searchPtrnTextField);
       add (searchPtrnJBtn);
-      add (resultSongList);
+      add (resultSongListScroll);
       add (openSongBtn);
       add (jcomp10);
       add (jcomp11);
@@ -103,6 +110,7 @@ public class SearchPanel extends JFrame implements ActionListener {
       searchPtrnLabel.setBounds (5, 35, 100, 25);
       searchPtrnTextField.setBounds (100, 35, 215, 25);
       searchPtrnJBtn.setBounds (320, 35, 110, 25);
+      resultSongListScroll.setBounds (5, 65, 310, 360);
       resultSongList.setBounds (5, 65, 310, 360);
       openSongBtn.setBounds (320, 400, 110, 25);
       jcomp10.setBounds (500, 5, 100, 25);
@@ -156,6 +164,17 @@ public void actionPerformed(ActionEvent e) {
 	case "openBtn":
 		System.out.println("Open clicked");
 		break;
+	}
+}
+
+void updateView() 
+{
+    resultSongList.setModel(new DefaultTableModel(200,6));
+
+	resultSongList.removeAll();
+	for (int i =0; i<songList.size() ; i++)
+	{
+		
 	}
 }
 

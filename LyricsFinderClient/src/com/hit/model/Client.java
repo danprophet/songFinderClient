@@ -135,6 +135,7 @@ public class Client implements Runnable
 								
 								parsedResponse = new Response(command, songList);
 							}
+							break;
 						default:
 							System.out.println("[Client] Request error");
 							break;
