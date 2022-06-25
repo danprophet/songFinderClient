@@ -13,17 +13,23 @@
 {"headers":
 {"action":"search_title"},
 "body":
-{"string":”the string to find in title”}
+{"string":ג€�the string to find in titleג€�}
 }
 ----
 {"headers":
 {"action":"search_artist"},
 "body":
-{"string":”string artist”}
+{"string":ג€�string artistג€�}
 }
 ----
 {"headers":
 {"action":"search_lyrics"},
 "body":
-{"string":”string artist”}
+{"string":ג€�string artistג€�}
+}
+----
+{"headers":
+{"action":"get_db"},
+"body":
+{"string":"empty"}
 }

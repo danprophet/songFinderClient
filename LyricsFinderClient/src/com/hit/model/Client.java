@@ -118,6 +118,7 @@ public class Client implements Runnable
 						case "search_title":
 						case "search_artist":
 						case "search_lyrics":
+						case "get_db":
 							{
 								JsonArray songArray = body.get("songList").getAsJsonArray();
 								List<Song> songList = new ArrayList<Song>();
@@ -186,6 +187,7 @@ public class Client implements Runnable
 				case "search_title":
 				case "search_artist":
 				case "search_lyrics":
+				case "get_db":
 					model.updateSearchedSongList(this.parsedResponse);
 					break;
 				default:

@@ -34,13 +34,9 @@ public class SearchPanel extends JFrame implements ActionListener {
   static List<Song> songList;
   public static MyController controller;
   
+  // button codes
   static String searchBtn = "searchBtn";
   static String openBtn = "openBtn";
-
-  void setControoler(MyController control)
-  {
-	  this.controller = control;
-  }
   
   public SearchPanel() {
 //	  this.controller = new MyController();
@@ -147,6 +143,10 @@ public class SearchPanel extends JFrame implements ActionListener {
 		}});
   }
 
+  void setControoler(MyController control)
+  {
+	  this.controller = control;
+  }
   
 @Override
 public void actionPerformed(ActionEvent e) {
@@ -244,17 +244,4 @@ public static void fromControllerSongList(List<Song> songListFromController)
 	songList = songListFromController;
 }
 
-private void updateSongList()
-{
-	
-}
-
-
-//  public static void main (String[] args) {
-//      JFrame frame = new JFrame ("MyPanel");
-//      frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
-//      frame.getContentPane().add (new SearchPanel());
-//      frame.pack();
-//      frame.setVisible (true);
-//  }
 }

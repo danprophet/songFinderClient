@@ -24,7 +24,26 @@ public class MyModel implements IModel{
 	public void updateSearchedSongList(Response fromServer)
 	{
 		// notify controller:
-		thisController.updateSongList(fromServer.getSongList());
+		String action = fromServer.getAction();
+		
+		switch(action)
+		{
+		case "get_db":
+			thisController.updateDB(fromServer.getSongList());
+			break;
+		case "search_title":
+		case "search_artist":
+		case "search_lyrics":
+			thisController.updateSongList(fromServer.getSongList());
+			break;
+		case "add":
+		case "remove":
+			thisController.addRemoveStatus(fromServer.getStatus());
+			break;
+		default:
+			System.out.println("[Model] Unrecognized action (Response)");
+			break;
+		}
 	}
 	
 	public static void responseAddRemoveStatus(Response fromServer)
@@ -54,6 +73,11 @@ public class MyModel implements IModel{
 		this.sendRequest(newRequest);
 	}
 	
+	public void getDB()
+	{
+		Request newRequest = new Request("get_db");
+		this.sendRequest(newRequest);
+	}
 
 	public boolean isLastActionResult() {
 		return lastActionResult;

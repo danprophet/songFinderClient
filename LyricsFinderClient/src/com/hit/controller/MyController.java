@@ -1,5 +1,6 @@
 package com.hit.controller;
 import com.hit.view.SearchPanel;
+import com.hit.view.ManageDBPanel;
 import java.util.List;
 
 import javax.swing.event.ChangeListener;
@@ -21,6 +22,14 @@ public class MyController implements IController{
 	public void updateSongList(List<Song> songListFromModel) {
 		SearchPanel.fromControllerSongList(songListFromModel);
 		notifyListener();
+	}
+	
+	public void updateDB(List<Song> songListFromModel) {
+		ManageDBPanel.fromControllerSongList(songListFromModel);
+	}
+	
+	public void addRemoveStatus(boolean status) {
+//		ManageDBPanel.fromControllerSongList(songListFromModel);
 	}
 	
     void notifyListener(){
@@ -57,6 +66,11 @@ public class MyController implements IController{
 	public void searchLyrics(String searchPattern)
 	{
 		thisModel.search(searchPattern, "search_lyrics");
+	}
+	
+	public void getDB()
+	{
+		thisModel.getDB();
 	}
 	
     public void setListener(ChangeListener listener) {

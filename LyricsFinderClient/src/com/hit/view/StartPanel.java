@@ -27,12 +27,14 @@ public class StartPanel extends JPanel implements ActionListener{
     static String searchString = "searchMode";
     static String manageString = "manageDB";
     SearchPanel searchPanelGui = new SearchPanel();
+    ManageDBPanel addRemovePanelGui = new ManageDBPanel();
     MyController control;
     
     public StartPanel (MyController passedController)
     {
     	this.control = passedController;
     	this.searchPanelGui.setControoler(passedController);
+    	this.addRemovePanelGui.setControoler(passedController);
     	this.control.setListener(e->searchPanelGui.updateView());
     }
 	public StartPanel()
@@ -46,7 +48,7 @@ public class StartPanel extends JPanel implements ActionListener{
         
         JButton manageSongDB = new JButton("Manage Songs DB");
         manageSongDB.setActionCommand(manageString);
-        manageSongDB.setSelected(true);
+        manageSongDB.setSelected(false);
         
         JPanel buttonPanel = new JPanel(new GridLayout(0, 1));
         buttonPanel.add(searchMode);
@@ -91,6 +93,7 @@ public class StartPanel extends JPanel implements ActionListener{
 			System.out.println("Search clicked.");
 			break;
 		case "manageDB":
+			this.addRemovePanelGui.setVisible(true);
 			System.out.println("Manage DB clicked.");
 			break;
 		default:
@@ -98,13 +101,5 @@ public class StartPanel extends JPanel implements ActionListener{
 			break;
 		}		
 	}
-
-//    public static void main(String[] args) {
-//        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-//            public void run() {
-//                createAndShowGUI();
-//            }
-//        });
-//    }
 	
 }
