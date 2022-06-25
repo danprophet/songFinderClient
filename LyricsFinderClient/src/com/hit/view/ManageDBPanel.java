@@ -148,7 +148,7 @@ public void actionPerformed(ActionEvent e)
 		break;
 	case "removeBtn":
 		System.out.println("[Manage DB Panel] remove action");
-
+		this.removeFromDB();
 		break;
 	case "updateBtn":
 		System.out.println("[Manage DB Panel] update action");
@@ -158,7 +158,6 @@ public void actionPerformed(ActionEvent e)
 		System.out.println("[Manage DB Panel] refresh action");
 		this.updateView();
 		break;
-		
 	default:
 		System.out.println("[Manage DB Panel] Unrecognized action");
 		break;
@@ -197,6 +196,12 @@ void addToDB()
 	String artist = this.artistJTextField.getText();
 	String lyrics = this.lyricsJTextArea.getText();
 	this.controller.addSong(title, artist, lyrics);
+}
+
+void removeFromDB()
+{
+	int songID = Integer.parseInt(enterSongIdJTextField.getText());
+	this.controller.removeSong(songID);
 }
 
 public static void fromControllerSongList(List<Song> songListFromController)

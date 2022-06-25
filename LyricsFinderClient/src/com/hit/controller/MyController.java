@@ -73,6 +73,11 @@ public class MyController implements IController{
 		thisModel.addSong(title, artist, lyrics);
 	}
 	
+	public void removeSong(int songID)
+	{
+		thisModel.removeSong(songID);
+	}
+	
 	public void getDB()
 	{
 		thisModel.getDB();

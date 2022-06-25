@@ -79,6 +79,12 @@ public class MyModel implements IModel{
 		this.sendRequest(newRequest);
 	}
 	
+	public void removeSong(int songID)
+	{
+		Request newRequest = new Request("remove", songID);
+		this.sendRequest(newRequest);
+	}
+	
 	public void getDB()
 	{
 		Request newRequest = new Request("get_db");
