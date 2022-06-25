@@ -4,6 +4,13 @@ import com.hit.controller.MyController;
 import com.hit.view.SearchPanel;
 import com.hit.view.StartPanel;
 
+/*
+ * Lyrics Finder Project
+ * Author: Dan Averin  
+ * Email: dan.averinn@gmail.com
+ */
+
+
 public class MCVDriver {
 	public static void main(String[] args)
 	{
