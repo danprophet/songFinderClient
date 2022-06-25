@@ -2,12 +2,12 @@ package com.hit.model;
 
 public class Request {
 	
-	String command = "";
-	String title = "";
-	String artist = "";
-	String lyrics = "";
-	String search = "";
-	int id = -1;
+	private String command = "";
+	private String title = "";
+	private String artist = "";
+	private String lyrics = "";
+	private String search = "";
+	private int id = -1;
 	
 	public Request(String command, String title, String artist, String lyrics) // Add Ctor
 	{

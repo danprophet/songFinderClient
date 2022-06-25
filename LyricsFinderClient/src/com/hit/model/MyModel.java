@@ -38,7 +38,7 @@ public class MyModel implements IModel{
 			break;
 		case "add":
 		case "remove":
-			thisController.addRemoveStatus(fromServer.getStatus());
+			thisController.addRemoveStatus(action, fromServer.getStatus());
 			break;
 		default:
 			System.out.println("[Model] Unrecognized action (Response)");
@@ -50,7 +50,7 @@ public class MyModel implements IModel{
 	{
 		setLastActionResult(fromServer.getStatus());
 		// notify controller:
-		
+		MyController.updateRequestStatus(lastActionResult);
 	}
 
 	public void search(String pattern, String action)
@@ -70,6 +70,12 @@ public class MyModel implements IModel{
 			break;
 		}
 		
+		this.sendRequest(newRequest);
+	}
+	
+	public void addSong(String title, String artist, String lyrics)
+	{
+		Request newRequest = new Request("add", title, artist, lyrics);
 		this.sendRequest(newRequest);
 	}
 	

@@ -15,7 +15,7 @@ public class ManageDBPanel extends JFrame implements ActionListener {
 	  private JLabel allSongListLabel;
 	  private JLabel addNewSongJLabel;
 	  private JLabel titleJLabel;
-	  private JLabel artestJLabel;
+	  private JLabel artistJLabel;
 	  private JLabel lyricsJLabel;
 	  private JScrollPane lyricsScroll;
 	  private JTextArea lyricsJTextArea;
@@ -49,7 +49,7 @@ public class ManageDBPanel extends JFrame implements ActionListener {
 	      allSongListLabel = new JLabel ("All Song List in DB:");
 	      addNewSongJLabel = new JLabel ("Add New Song:");
 	      titleJLabel = new JLabel ("Title:");
-	      artestJLabel = new JLabel ("Artist:");
+	      artistJLabel = new JLabel ("Artist:");
 	      lyricsJLabel = new JLabel ("Lyrics:");
 	      lyricsJTextArea = new JTextArea (5, 5);
 	      lyricsScroll = new JScrollPane(lyricsJTextArea);
@@ -78,7 +78,7 @@ public class ManageDBPanel extends JFrame implements ActionListener {
 	      add (allSongListLabel);
 	      add (addNewSongJLabel);
 	      add (titleJLabel);
-	      add (artestJLabel);
+	      add (artistJLabel);
 	      add (lyricsJLabel);
 	      add (lyricsScroll);
 	      add (titleJTextField);
@@ -97,7 +97,7 @@ public class ManageDBPanel extends JFrame implements ActionListener {
 	      allSongListLabel.setBounds (15, 5, 130, 30);
 	      addNewSongJLabel.setBounds (275, 10, 100, 25);
 	      titleJLabel.setBounds (275, 30, 100, 25);
-	      artestJLabel.setBounds (275, 50, 100, 25);
+	      artistJLabel.setBounds (275, 50, 100, 25);
 	      lyricsJLabel.setBounds (275, 70, 100, 25);
 	      lyricsJTextArea.setBounds (275, 90, 475, 175);
 	      lyricsScroll.setBounds (275, 90, 475, 175);
@@ -144,7 +144,7 @@ public void actionPerformed(ActionEvent e)
 	{
 	case "addBtn":
 		System.out.println("[Manage DB Panel] add action");
-
+		this.addToDB();
 		break;
 	case "removeBtn":
 		System.out.println("[Manage DB Panel] remove action");
@@ -191,10 +191,21 @@ void updateView()
 	}
 }
 
+void addToDB()
+{
+	String title = this.titleJTextField.getText();
+	String artist = this.artistJTextField.getText();
+	String lyrics = this.lyricsJTextArea.getText();
+	this.controller.addSong(title, artist, lyrics);
+}
 
 public static void fromControllerSongList(List<Song> songListFromController)
 {
 	songList = songListFromController;
+}
+
+public static void addRemoveStatus(String action, boolean status) {
+	System.out.println("[Manage DB Panel] "+ action + " status: " + status);
 }
 
 }

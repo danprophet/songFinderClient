@@ -28,8 +28,8 @@ public class MyController implements IController{
 		ManageDBPanel.fromControllerSongList(songListFromModel);
 	}
 	
-	public void addRemoveStatus(boolean status) {
-//		ManageDBPanel.fromControllerSongList(songListFromModel);
+	public void addRemoveStatus(String action, boolean status) {
+		ManageDBPanel.addRemoveStatus(action, status);
 	}
 	
     void notifyListener(){
@@ -66,6 +66,11 @@ public class MyController implements IController{
 	public void searchLyrics(String searchPattern)
 	{
 		thisModel.search(searchPattern, "search_lyrics");
+	}
+	
+	public void addSong(String title, String artist, String lyrics)
+	{
+		thisModel.addSong(title, artist, lyrics);
 	}
 	
 	public void getDB()

@@ -139,7 +139,7 @@ public class Client implements Runnable
 							}
 							break;
 						default:
-							System.out.println("[Client] Request error");
+							System.out.println("[Client] Response error");
 							break;
 						}
 						return parsedResponse;
@@ -182,8 +182,6 @@ public class Client implements Runnable
 			{
 				case "add":
 				case "remove":
-					model.responseAddRemoveStatus(this.parsedResponse);
-					break;
 				case "search_title":
 				case "search_artist":
 				case "search_lyrics":
