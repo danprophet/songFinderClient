@@ -20,7 +20,7 @@ public class SearchPanel extends JFrame implements ActionListener {
   private JButton searchPtrnJBtn;
   private JScrollPane resultSongListScroll;
   private JTable  resultSongList;  
-  private JButton openSongBtn;
+  private JButton refreshBtn;
   private JLabel songTitleJLable;
   private JTextField songTitleJTextField;
   private JLabel artistJLable;
@@ -28,6 +28,7 @@ public class SearchPanel extends JFrame implements ActionListener {
   private JLabel songIDJLable;
   private JTextField songIDJTextField;
   private JLabel lyricsJLable;
+  private JScrollPane lyricsScroll;
   private JTextArea lyricsJTextField;
   String[] resultColumnNames = {"Song Name", "Artist", "Song ID", "#"};
   static List<Song> songList;
@@ -44,7 +45,7 @@ public class SearchPanel extends JFrame implements ActionListener {
   public SearchPanel() {
 //	  this.controller = new MyController();
       //construct preComponents
-      Object[][] resultSongListItems = {{"No Song In List","No Song In List" , -1, -1}};
+      Object[][] resultSongListItems = {{"No Song In List","No Song In List" , 0, 0}};
 //      this.setPreferredSize(new Dimension(500,500));
       this.setBounds(100, 100, 1020, 470);
       this.setResizable(false);
@@ -73,16 +74,22 @@ public class SearchPanel extends JFrame implements ActionListener {
       resultSongListScroll = new JScrollPane(resultSongList);
       resultSongList.setDefaultEditor(Object.class, null); //JTable set not editable
       
-      openSongBtn = new JButton ("Open");
-      openSongBtn.setActionCommand(this.openBtn);
+      refreshBtn = new JButton ("Refresh");
+      refreshBtn.setActionCommand(this.openBtn);
       songTitleJLable = new JLabel ("Song Title:");
       songTitleJTextField = new JTextField (5);
+      songTitleJTextField.setEditable(false);
       artistJLable = new JLabel ("Artist:");
       artistJTextField = new JTextField (5);
+      artistJTextField.setEditable(false);
       songIDJLable = new JLabel ("Song ID:");
       songIDJTextField = new JTextField (5);
+      songIDJTextField.setEditable(false);
       lyricsJLable = new JLabel ("Lyrics:");
+      
       lyricsJTextField = new JTextArea (5, 5);
+      lyricsJTextField.setEditable(false);
+      lyricsScroll = new JScrollPane(lyricsJTextField);
 
       //adjust size and set layout
       setPreferredSize (new Dimension (1018, 440));
@@ -97,7 +104,7 @@ public class SearchPanel extends JFrame implements ActionListener {
       add (searchPtrnTextField);
       add (searchPtrnJBtn);
       add (resultSongListScroll);
-      add (openSongBtn);
+      add (refreshBtn);
       add (songTitleJLable);
       add (songTitleJTextField);
       add (artistJLable);
@@ -105,7 +112,7 @@ public class SearchPanel extends JFrame implements ActionListener {
       add (songIDJLable);
       add (songIDJTextField);
       add (lyricsJLable);
-      add (lyricsJTextField);
+      add (lyricsScroll);
 
       //set component bounds (only needed by Absolute Positioning)
       searchLabel.setBounds (5, 5, 50, 25);
@@ -117,7 +124,7 @@ public class SearchPanel extends JFrame implements ActionListener {
       searchPtrnJBtn.setBounds (320, 35, 110, 25);
       resultSongListScroll.setBounds (5, 65, 310, 360);
       resultSongList.setBounds (5, 65, 310, 360);
-      openSongBtn.setBounds (320, 400, 110, 25);
+      refreshBtn.setBounds (320, 400, 110, 25);
       songTitleJLable.setBounds (500, 5, 100, 25);
       songTitleJTextField.setBounds (570, 5, 425, 25);
       artistJLable.setBounds (500, 35, 100, 25);
@@ -126,10 +133,11 @@ public class SearchPanel extends JFrame implements ActionListener {
       songIDJTextField.setBounds (570, 65, 425, 25);
       lyricsJLable.setBounds (500, 100, 100, 25);
       lyricsJTextField.setBounds (500, 125, 495, 300);
+      lyricsScroll.setBounds (500, 125, 495, 300);
       
       //Register a listener for the radio buttons.
       searchPtrnJBtn.addActionListener(this);
-      openSongBtn.addActionListener(this);    
+      refreshBtn.addActionListener(this);    
       resultSongList.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
 		@Override
@@ -149,6 +157,9 @@ public void actionPerformed(ActionEvent e) {
 	{
 		if (this.radioBtns.getSelection() != null) 
 		{
+			DefaultTableModel dm = (DefaultTableModel)resultSongList.getModel();
+			dm.setRowCount(0);
+
 			String pattern = this.searchPtrnTextField.getText();
 			String selectedBtn = this.radioBtns.getSelection().getActionCommand();
 			switch (selectedBtn)
@@ -181,39 +192,51 @@ public void actionPerformed(ActionEvent e) {
 	}
 }
 
-void updateCurrentSongView() {
-	int row = resultSongList.getSelectedRow();
-	int position =  (int) resultSongList.getValueAt(row, 3);
-	
-	//Set Song data to gui:
-	songTitleJTextField.setText(songList.get(position).getTitle());
-	artistJTextField.setText(songList.get(position).getArtist());
-	songIDJTextField.setText(((Integer)songList.get(position).getSongID()).toString());
-	lyricsJTextField.setText(songList.get(position).getSongLyrics());
+void updateCurrentSongView() 
+{
+	try 
+	{
+		int row = resultSongList.getSelectedRow();
+		if (row >= 0)
+		{
+			int position =  (int) resultSongList.getValueAt(row, 3);
+			
+			if (songList.size() > 0 && row > -1 && position >= 0)
+			{
+				//Set Song data to gui:
+				songTitleJTextField.setText(songList.get(position).getTitle());
+				artistJTextField.setText(songList.get(position).getArtist());
+				songIDJTextField.setText(((Integer)songList.get(position).getSongID()).toString());
+				lyricsJTextField.setText(songList.get(position).getSongLyrics());
+			}
+		}
+
+	}
+	catch(Exception e)
+	{
+		System.out.println(e);
+	}
 }
 
 void updateView() 
 {
-//	DefaultTableModel dm = (DefaultTableModel)resultSongList.getModel();
-//	dm.getDataVector().removeAllElements();
-//	dm.setRowCount(0);
-//
-//	dm.fireTableDataChanged();
-//	this.searchPtrnTextField.setText("worked");
-	
-	
-	Object[][] songSongItems = new Object[songList.size()][4];
-	resultSongList.removeAll();
-	for (int i =0; i<songList.size() ; i++)
+	DefaultTableModel dm = (DefaultTableModel)resultSongList.getModel();
+	dm.setRowCount(0);
+
+	if (songList != null)
 	{
-		songSongItems[i][0] = songList.get(i).getTitle();
-		songSongItems[i][1] = songList.get(i).getArtist();
-		songSongItems[i][2] = songList.get(i).getSongID();
-		songSongItems[i][3] = i;
-		
+		Object[][] songSongItems = new Object[songList.size()][4];
+		for (int i =0; i<songList.size() ; i++)
+		{
+			songSongItems[i][0] = songList.get(i).getTitle();
+			songSongItems[i][1] = songList.get(i).getArtist();
+			songSongItems[i][2] = songList.get(i).getSongID();
+			songSongItems[i][3] = i;
+			
+		}
+	    resultSongList.setModel(new DefaultTableModel(songSongItems, resultColumnNames));
+	    System.out.println("Trying to update songlist in gui");
 	}
-    resultSongList.setModel(new DefaultTableModel(songSongItems, resultColumnNames));
-    System.out.println("Trying to update songlist in gui");
 }
 
 public static void fromControllerSongList(List<Song> songListFromController)
