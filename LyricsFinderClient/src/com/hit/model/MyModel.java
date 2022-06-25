@@ -5,25 +5,26 @@ import com.hit.controller.MyController;
 public class MyModel implements IModel{
 
 	private static boolean lastActionResult;
+	MyController thisController;
 	
-	public MyModel()
+	public MyModel(MyController controller)
 	{
-		
+		thisController = controller;
 	}
 	
 	
 	public void sendRequest(Request outgoingRequest)
 	{
-		Client myClient = new Client();
+		Client myClient = new Client(this);
 		myClient.setRequest(outgoingRequest);
 		Thread t1 = new Thread(myClient);
 		t1.start();
 	}
 	
-	public static void updateSearchedSongList(Response fromServer)
+	public void updateSearchedSongList(Response fromServer)
 	{
 		// notify controller:
-		MyController.updateSongList(fromServer.getSongList());
+		thisController.updateSongList(fromServer.getSongList());
 	}
 	
 	public static void responseAddRemoveStatus(Response fromServer)

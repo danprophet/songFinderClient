@@ -29,10 +29,11 @@ public class Client implements Runnable
 	Response parsedResponse;
 	String ipAddress = "127.0.0.1";
 	int Port = 34567;
-
+	MyModel model;
 	
-	public Client()
+	public Client(MyModel passedModel)
 	{
+		this.model = passedModel;
 	}
 	
 	public void setRequest(Request fromClient)
@@ -180,12 +181,12 @@ public class Client implements Runnable
 			{
 				case "add":
 				case "remove":
-					MyModel.responseAddRemoveStatus(this.parsedResponse);
+					model.responseAddRemoveStatus(this.parsedResponse);
 					break;
 				case "search_title":
 				case "search_artist":
 				case "search_lyrics":
-					MyModel.updateSearchedSongList(this.parsedResponse);
+					model.updateSearchedSongList(this.parsedResponse);
 					break;
 				default:
 					System.out.println("[Client] Action not valid");

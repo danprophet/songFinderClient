@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.lang.ModuleLayer.Controller;
 import java.awt.Toolkit;
 
 import javax.swing.BoxLayout;
@@ -18,17 +19,25 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import com.hit.controller.MyController;
+
 
 public class StartPanel extends JPanel implements ActionListener{
 	
     static String searchString = "searchMode";
     static String manageString = "manageDB";
     SearchPanel searchPanelGui = new SearchPanel();
+    MyController control;
     
+    public StartPanel (MyController passedController)
+    {
+    	this.control = passedController;
+    	this.searchPanelGui.setControoler(passedController);
+    	this.control.setListener(e->searchPanelGui.updateView());
+    }
 	public StartPanel()
 	{
 		super (new BorderLayout());
-		
 		this.setPreferredSize(new Dimension(200,100));
 //		this.setBounds(100, 100, 1020, 470);
         JButton searchMode = new JButton("Search Mode");
