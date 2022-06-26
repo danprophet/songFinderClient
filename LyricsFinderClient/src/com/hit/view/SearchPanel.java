@@ -143,7 +143,6 @@ public class SearchPanel extends JFrame implements ActionListener {
 		@Override
 		public void valueChanged(ListSelectionEvent e) {
 			updateCurrentSongView();
-//			System.out.println("Selection made" + resultSongList.getSelectedRow());
 		}});
   }
 
@@ -169,15 +168,12 @@ public void actionPerformed(ActionEvent e) {
 			switch (selectedBtn)
 			{
 			case "titleBtn":
-				System.out.println("Search Title " + pattern);
 				this.controller.searchTitle(pattern);
 				break;
 			case "artistBtn":
-				System.out.println("Search artist " + pattern);
 				this.controller.searchArtist(pattern);
 				break;
 			case "lyricsBtn":
-				System.out.println("Search Lyrics " + pattern);
 				this.controller.searchLyrics(pattern);
 				break;
 			default:
@@ -190,7 +186,6 @@ public void actionPerformed(ActionEvent e) {
 	
 		
 	case "openBtn":
-		System.out.println("Open clicked");
 		updateView();
 		break;
 	}
@@ -239,7 +234,6 @@ void updateView()
 			
 		}
 	    resultSongList.setModel(new DefaultTableModel(songSongItems, resultColumnNames));
-	    System.out.println("Trying to update songlist in gui");
 	}
 }
 

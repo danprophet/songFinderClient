@@ -110,14 +110,12 @@ public class StartPanel extends JPanel implements ActionListener{
 		{
 		case "searchMode":
 			this.searchPanelGui.setVisible(true);
-			System.out.println("Search clicked.");
 			break;
 		case "manageDB":
 			this.addRemovePanelGui.setVisible(true);
-			System.out.println("Manage DB clicked.");
 			break;
 		default:
-			System.out.println("Unrecognized Command.");
+			System.out.println("Unrecognized Command Clicked.");
 			break;
 		}		
 	}

@@ -121,7 +121,6 @@ public class ManageDBPanel extends JFrame implements ActionListener {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				updateCurrentSongView();
-//				System.out.println("Selection made" + resultSongList.getSelectedRow());
 			}});
 	  }
 	  
@@ -143,19 +142,15 @@ public void actionPerformed(ActionEvent e)
 	switch(action)
 	{
 	case "addBtn":
-		System.out.println("[Manage DB Panel] add action");
 		this.addToDB();
 		break;
 	case "removeBtn":
-		System.out.println("[Manage DB Panel] remove action");
 		this.removeFromDB();
 		break;
 	case "updateBtn":
-		System.out.println("[Manage DB Panel] update action");
 		this.controller.getDB();
 		break;
 	case "refreshBtn":
-		System.out.println("[Manage DB Panel] refresh action");
 		this.updateView();
 		break;
 	default:
@@ -186,7 +181,6 @@ void updateView()
 			
 		}
 		songListInDBList.setModel(new DefaultTableModel(songSongItems, columnNames));
-		System.out.println("[Manage DB Panel] update table");
 	}
 }
 
