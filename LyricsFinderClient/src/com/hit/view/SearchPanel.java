@@ -67,6 +67,7 @@ public class SearchPanel extends JFrame implements ActionListener {
       searchPtrnTextField = new JTextField (5);
       searchPtrnJBtn = new JButton ("1. Search");
       searchPtrnJBtn.setActionCommand(this.searchBtn);
+      searchPtrnJBtn.setBackground(new Color(240, 128, 128));
       //JTable 
       resultSongList = new JTable(new DefaultTableModel(resultSongListItems, resultColumnNames));
       resultSongListScroll = new JScrollPane(resultSongList);
@@ -74,6 +75,7 @@ public class SearchPanel extends JFrame implements ActionListener {
       
       refreshBtn = new JButton ("2. Refresh");
       refreshBtn.setActionCommand(this.openBtn);
+      refreshBtn.setBackground(new Color(250, 128, 114));
       songTitleJLable = new JLabel ("Song Title:");
       songTitleJTextField = new JTextField (5);
       songTitleJTextField.setEditable(false);

@@ -45,10 +45,12 @@ public class StartPanel extends JPanel implements ActionListener{
         //construct components
         JButton searchMode = new JButton("Search Mode");
         searchMode.setActionCommand(searchString);
-        
+        searchMode.setBackground(new Color( 130, 224, 170 ));
+
         JButton manageSongDB = new JButton("Manage Songs DB");
         manageSongDB.setActionCommand(manageString);
-        
+        manageSongDB.setBackground(new Color(171, 235, 198));
+
         //adjust size and set layout
 		this.setPreferredSize(new Dimension(400,500));
         FlowLayout layout = new FlowLayout();
