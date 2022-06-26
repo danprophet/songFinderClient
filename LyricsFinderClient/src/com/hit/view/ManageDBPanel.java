@@ -60,11 +60,11 @@ public class ManageDBPanel extends JFrame implements ActionListener {
 	      removeSongsJLabel = new JLabel ("Remove Song From DB:");
 	      enterSongIDJlabel = new JLabel ("Enter Song ID:");
 	      enterSongIdJTextField = new JTextField (5);
-	      updateDBfromServer = new JButton ("Update DB From Server");
+	      updateDBfromServer = new JButton ("1. Update DB From Server");
 	      updateDBfromServer.setActionCommand(this.updateBtn);
 	      removeSongJButton = new JButton ("Remove Song");
 	      removeSongJButton.setActionCommand(this.removeBtn);
-	      refreshSongListJButton = new JButton ("Refresh Song List");
+	      refreshSongListJButton = new JButton ("2. Refresh Song List");
 	      refreshSongListJButton.setActionCommand(this.refreshBtn);
 
 	      //adjust size and set layout
@@ -108,8 +108,8 @@ public class ManageDBPanel extends JFrame implements ActionListener {
 	      enterSongIDJlabel.setBounds (395, 335, 100, 25);
 	      enterSongIdJTextField.setBounds (480, 335, 100, 25);
 	      removeSongJButton.setBounds (605, 335, 125, 25);
-	      updateDBfromServer.setBounds (395, 390, 175, 25);
-	      refreshSongListJButton.setBounds (395, 424, 175, 25);
+	      updateDBfromServer.setBounds (395, 390, 185, 25);
+	      refreshSongListJButton.setBounds (395, 424, 185, 25);
 	      
 	      //Register a listener for the radio buttons.
 	      addDBJButton.addActionListener(this);

@@ -65,14 +65,14 @@ public class SearchPanel extends JFrame implements ActionListener {
       
       searchPtrnLabel = new JLabel ("Search Pattern:");
       searchPtrnTextField = new JTextField (5);
-      searchPtrnJBtn = new JButton ("Search");
+      searchPtrnJBtn = new JButton ("1. Search");
       searchPtrnJBtn.setActionCommand(this.searchBtn);
       //JTable 
       resultSongList = new JTable(new DefaultTableModel(resultSongListItems, resultColumnNames));
       resultSongListScroll = new JScrollPane(resultSongList);
       resultSongList.setDefaultEditor(Object.class, null); //JTable set not editable
       
-      refreshBtn = new JButton ("Refresh");
+      refreshBtn = new JButton ("2. Refresh");
       refreshBtn.setActionCommand(this.openBtn);
       songTitleJLable = new JLabel ("Song Title:");
       songTitleJTextField = new JTextField (5);
@@ -119,10 +119,10 @@ public class SearchPanel extends JFrame implements ActionListener {
       lyricsRadiobtn.setBounds (323, 5, 100, 25);
       searchPtrnLabel.setBounds (10, 35, 100, 25);
       searchPtrnTextField.setBounds (105, 35, 280, 25);
-      searchPtrnJBtn.setBounds (390, 35, 90, 25);
+      searchPtrnJBtn.setBounds (390, 35, 100, 25);
       resultSongListScroll.setBounds (10, 65, 375, 360);
       resultSongList.setBounds (10, 65, 375, 360);
-      refreshBtn.setBounds (390, 400, 90, 25);
+      refreshBtn.setBounds (390, 65, 100, 25);
       songTitleJLable.setBounds (500, 5, 100, 25);
       songTitleJTextField.setBounds (570, 5, 425, 25);
       artistJLable.setBounds (500, 35, 100, 25);
