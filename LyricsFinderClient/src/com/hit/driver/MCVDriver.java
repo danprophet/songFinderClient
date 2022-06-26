@@ -10,7 +10,6 @@ import com.hit.view.StartPanel;
  * Email: dan.averinn@gmail.com
  */
 
-
 public class MCVDriver {
 	public static void main(String[] args)
 	{

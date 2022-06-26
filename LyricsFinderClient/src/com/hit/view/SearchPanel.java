@@ -4,6 +4,11 @@ import com.hit.model.Song;
 import java.util.List;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.table.DefaultTableModel;
@@ -39,10 +44,8 @@ public class SearchPanel extends JFrame implements ActionListener {
   static String openBtn = "openBtn";
   
   public SearchPanel() {
-//	  this.controller = new MyController();
       //construct preComponents
       Object[][] resultSongListItems = {{"No Song In List","No Song In List" , 0, 0}};
-//      this.setPreferredSize(new Dimension(500,500));
       this.setBounds(100, 100, 1020, 470);
       this.setResizable(false);
       //construct components
@@ -55,7 +58,6 @@ public class SearchPanel extends JFrame implements ActionListener {
       artistsRadiobtn.setActionCommand("artistBtn");
       lyricsRadiobtn.setActionCommand("lyricsBtn");
 
-      
       radioBtns = new ButtonGroup();
       radioBtns.add(titlesRadiobtn);
       radioBtns.add(artistsRadiobtn);
@@ -111,16 +113,16 @@ public class SearchPanel extends JFrame implements ActionListener {
       add (lyricsScroll);
 
       //set component bounds (only needed by Absolute Positioning)
-      searchLabel.setBounds (5, 5, 50, 25);
+      searchLabel.setBounds (10, 5, 50, 25);
       titlesRadiobtn.setBounds (89, 5, 90, 25);
       artistsRadiobtn.setBounds (202, 5, 100, 25);
       lyricsRadiobtn.setBounds (323, 5, 100, 25);
-      searchPtrnLabel.setBounds (5, 35, 100, 25);
-      searchPtrnTextField.setBounds (100, 35, 215, 25);
-      searchPtrnJBtn.setBounds (320, 35, 110, 25);
-      resultSongListScroll.setBounds (5, 65, 310, 360);
-      resultSongList.setBounds (5, 65, 310, 360);
-      refreshBtn.setBounds (320, 400, 110, 25);
+      searchPtrnLabel.setBounds (10, 35, 100, 25);
+      searchPtrnTextField.setBounds (105, 35, 280, 25);
+      searchPtrnJBtn.setBounds (390, 35, 90, 25);
+      resultSongListScroll.setBounds (10, 65, 375, 360);
+      resultSongList.setBounds (10, 65, 375, 360);
+      refreshBtn.setBounds (390, 400, 90, 25);
       songTitleJLable.setBounds (500, 5, 100, 25);
       songTitleJTextField.setBounds (570, 5, 425, 25);
       artistJLable.setBounds (500, 35, 100, 25);

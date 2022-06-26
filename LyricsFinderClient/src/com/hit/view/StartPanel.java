@@ -1,26 +1,29 @@
 package com.hit.view;
-
-import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.lang.ModuleLayer.Controller;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.awt.Toolkit;
-
-import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
+import javax.swing.SpringLayout;
 
 import com.hit.controller.MyController;
-
+// icon: https://icons8.com/icon/wHwLtQV8HEWQ/music-record Music Record icon
+// background: Photo by Elza Kurbanova https://unsplash.com/es/@kurbanova on Unsplash
 
 public class StartPanel extends JPanel implements ActionListener{
 	
@@ -39,46 +42,61 @@ public class StartPanel extends JPanel implements ActionListener{
     }
 	public StartPanel()
 	{
-		super (new BorderLayout());
-		this.setPreferredSize(new Dimension(200,100));
-//		this.setBounds(100, 100, 1020, 470);
+        //construct components
         JButton searchMode = new JButton("Search Mode");
         searchMode.setActionCommand(searchString);
-        searchMode.setSelected(true);
         
         JButton manageSongDB = new JButton("Manage Songs DB");
         manageSongDB.setActionCommand(manageString);
-        manageSongDB.setSelected(false);
         
-        JPanel buttonPanel = new JPanel(new GridLayout(0, 1));
-        buttonPanel.add(searchMode);
-        buttonPanel.add(manageSongDB);
-      
-        add(buttonPanel);
+        //adjust size and set layout
+		this.setPreferredSize(new Dimension(400,500));
+        FlowLayout layout = new FlowLayout();
+        layout.setHgap (8);
+        layout.setVgap (450);
+        this.setLayout (layout);
+        
+        //add components
+        add(searchMode);
+        add(manageSongDB);
         
         //Register a listener for the radio buttons.
         searchMode.addActionListener(this);
-        manageSongDB.addActionListener(this);
+        manageSongDB.addActionListener(this); 
+	}
+	
+	@Override
+	  protected void paintComponent(Graphics g) {
+
+	    super.paintComponent(g);
+	    BufferedImage img = null;
+	    try {
+			img = ImageIO.read(new File("src\\com\\hit\\resources\\background.PNG"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+        g.drawImage(img, 1, 1, 400, 500, null);
 	}
 	
 	public static void createAndShowGUI()
 	{
         //Create and set up the window.
-        JFrame frame = new JFrame("StartPanel");
+        JFrame frame = new JFrame("Song Finder");
         frame.setResizable(false);
-        frame.setIconImage(Toolkit.getDefaultToolkit().getImage("src\\com\\hit\\resources\\iconDisc.jpg"));
-        frame.setBackground(Color.cyan);
+        frame.setIconImage(Toolkit.getDefaultToolkit().getImage("src\\com\\hit\\resources\\icon.png"));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
         
         //Create and set up the content pane.
         JComponent newContentPane = new StartPanel();
 
         newContentPane.setOpaque(true); //content panes must be opaque
         frame.setContentPane(newContentPane);
-
+        
         //Display the window.
         frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 	}
 

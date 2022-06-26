@@ -46,7 +46,7 @@ public class ManageDBPanel extends JFrame implements ActionListener {
 	      songListInDBList.setDefaultEditor(Object.class, null); //JTable set not editable
 	      songListInDBScroll = new JScrollPane(songListInDBList);
 
-	      allSongListLabel = new JLabel ("All Song List in DB:");
+	      allSongListLabel = new JLabel ("All Songs in DB:");
 	      addNewSongJLabel = new JLabel ("Add New Song:");
 	      titleJLabel = new JLabel ("Title:");
 	      artistJLabel = new JLabel ("Artist:");
@@ -68,7 +68,7 @@ public class ManageDBPanel extends JFrame implements ActionListener {
 	      refreshSongListJButton.setActionCommand(this.refreshBtn);
 
 	      //adjust size and set layout
-	      this.setBounds(200, 200, 780, 500);
+	      this.setBounds(200, 200, 900, 500);
 	      this.setResizable(false);
 //	      setPreferredSize (new Dimension (767, 466));
 	      setLayout (null);
@@ -92,24 +92,24 @@ public class ManageDBPanel extends JFrame implements ActionListener {
 	      add (refreshSongListJButton);
 
 	      //set component bounds (only needed by Absolute Positioning)
-	      songListInDBScroll.setBounds (15, 35, 235, 415);
-	      songListInDBList.setBounds (15, 35, 235, 415);
+	      songListInDBScroll.setBounds (15, 35, 365, 415);
+	      songListInDBList.setBounds (15, 35, 365, 415);
 	      allSongListLabel.setBounds (15, 5, 130, 30);
-	      addNewSongJLabel.setBounds (275, 10, 100, 25);
-	      titleJLabel.setBounds (275, 30, 100, 25);
-	      artistJLabel.setBounds (275, 50, 100, 25);
-	      lyricsJLabel.setBounds (275, 70, 100, 25);
-	      lyricsJTextArea.setBounds (275, 90, 475, 175);
-	      lyricsScroll.setBounds (275, 90, 475, 175);
-	      titleJTextField.setBounds (365, 30, 385, 20);
-	      artistJTextField.setBounds (365, 50, 385, 20);
-	      addDBJButton.setBounds (275, 270, 100, 25);
-	      removeSongsJLabel.setBounds (275, 310, 165, 25);
-	      enterSongIDJlabel.setBounds (275, 335, 100, 25);
-	      enterSongIdJTextField.setBounds (360, 335, 100, 25);
-	      removeSongJButton.setBounds (465, 335, 125, 25);
-	      updateDBfromServer.setBounds (275, 390, 175, 25);
-	      refreshSongListJButton.setBounds (275, 424, 175, 25);
+	      addNewSongJLabel.setBounds (395, 10, 100, 25);
+	      titleJLabel.setBounds (395, 30, 100, 25);
+	      artistJLabel.setBounds (395, 50, 100, 25);
+	      lyricsJLabel.setBounds (395, 70, 100, 25);
+	      lyricsJTextArea.setBounds (395, 90, 475, 175);
+	      lyricsScroll.setBounds (395, 90, 475, 175);
+	      titleJTextField.setBounds (485, 30, 385, 20);
+	      artistJTextField.setBounds (485, 50, 385, 20);
+	      addDBJButton.setBounds (395, 270, 100, 25);
+	      removeSongsJLabel.setBounds (395, 310, 165, 25);
+	      enterSongIDJlabel.setBounds (395, 335, 100, 25);
+	      enterSongIdJTextField.setBounds (480, 335, 100, 25);
+	      removeSongJButton.setBounds (605, 335, 125, 25);
+	      updateDBfromServer.setBounds (395, 390, 175, 25);
+	      refreshSongListJButton.setBounds (395, 424, 175, 25);
 	      
 	      //Register a listener for the radio buttons.
 	      addDBJButton.addActionListener(this);
